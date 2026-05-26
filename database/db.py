@@ -18,7 +18,7 @@ class Database:
 
     def all_product(self):
         with self.conn.cursor() as cur:
-            cur.execute("SELECT id, image, description,price,quantity FROM products")
+            cur.execute("SELECT id, name, description, price, quantity, image FROM products")
             return cur.fetchall()
 
     def all_categories(self):
@@ -28,7 +28,7 @@ class Database:
 
     def products_by_category(self, category_id):
         with self.conn.cursor() as cur:
-            cur.execute("SELECT id, image, description,price,quantity FROM products WHERE category_id = %s", (category_id,))
+            cur.execute("SELECT id, name, description, price, quantity, image FROM products WHERE category_id = %s", (category_id,))
             return cur.fetchall()
 
     def add_product_bd(self, description, price, quantity, image):

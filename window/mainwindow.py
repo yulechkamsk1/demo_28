@@ -89,7 +89,8 @@ class MainWindow(QWidget, Ui_Form):
             self.info = dao.products_by_category(category_id)
         self.tableWidget.setRowCount(len(self.info))
         for i in range(len(self.info)):
-            self.tableWidget.setItem(i, 0, QTableWidgetItem(str(self.info[i]["description"])))
-            self.tableWidget.setItem(i, 1, QTableWidgetItem(str(self.info[i]["price"])))
-            self.tableWidget.setItem(i, 2, QTableWidgetItem(str(self.info[i]["quantity"])))
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(str(self.info[i]["image"])))
+            self.tableWidget.setItem(i, 0, QTableWidgetItem(str(self.info[i]["name"])))
+            self.tableWidget.setItem(i, 1, QTableWidgetItem(str(self.info[i]["description"])))
+            self.tableWidget.setItem(i, 2, QTableWidgetItem(str(self.info[i]["price"])))
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(str(self.info[i]["quantity"])))
+            self.tableWidget.setItem(i, 4, QTableWidgetItem(str(self.info[i]["image"])))
