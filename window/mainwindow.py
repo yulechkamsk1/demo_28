@@ -34,6 +34,11 @@ class MainWindow(QWidget, Ui_Form):
             self.pushButton_edit.hide()
             self.pushButton_del.hide()
 
+        self.comboBox.addItem("Все категории", None)
+        for cat in dao.all_categories():
+            self.comboBox.addItem(cat["name"], cat["id"])
+        self.comboBox.currentIndexChanged.connect(self.table_widget)
+
         self.widget_product()
         self.table_widget()
 
@@ -77,7 +82,11 @@ class MainWindow(QWidget, Ui_Form):
             self.widget_product()
 
     def table_widget(self):
-        self.info = dao.all_product()
+        category_id = self.comboBox.currentData()
+        if category_id is None:
+            self.info = dao.all_product()
+        else:
+            self.info = dao.products_by_category(category_id)
         self.tableWidget.setRowCount(len(self.info))
         for i in range(len(self.info)):
             self.tableWidget.setItem(i, 0, QTableWidgetItem(str(self.info[i]["description"])))
